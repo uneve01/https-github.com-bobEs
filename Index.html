@@ -1,0 +1,1010 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8" /> 
+<title>Escenario Bob</title>
+</head>
+
+<body>
+
+<style>
+body {
+margin: 0;
+overflow: hidden;
+}
+#boton {
+position: absolute;
+width: 100%;
+height: 100%;
+width: 100%;
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+font-size: 40px;
+cursor: pointer;
+}
+#activ {
+color: green;
+}
+</style>
+
+<div id="boton">
+Para comenzar da clic en + para activar <p id="activ">( )</p>Mira al rededor usando
+el mouse, pulsa Esc para parar
+</div>
+
+<canvas id="myCanvas">
+</canvas>
+<script src="./font/Spongeboy Me Bob_Regular.js"></script>
+<script type="importmap"> 
+
+{
+ "imports":{
+"three": "./js/three.module.js",
+"three/OrbitControls": "./js/OrbitControls.js", 
+"three/PointerLockControls": "./js/PointerLockControls.js",
+"three/interactive": "./js/three.interactive.js"
+
+}
+}
+</script>
+<script type="module"> 
+ //👉🏽 Mandar llamar a la librería
+import * as THREE from 'three'; 
+  import {RoundedBoxGeometry} from "./js/RoundedBoxGeometry.js";
+    import { InteractionManager } from 'three/interactive';
+      import { TWEEN } from './js/tween.module.min.js'; 
+        import { PointerLockControls } from 'three/PointerLockControls';
+        import {TextGeometry} from "./js/TextGeometry.js";
+import {FontLoader} from "./js/FontLoader.js";
+      
+import ESC01 from "./js/Patricio.js"
+     import ESC02 from "./js/Calamardo.js"
+         import ESC03 from "./js/Bob.js"
+         import ESC04 from "./js/Entrada.js"
+           import ESC05 from "./js/Kangre.js"
+           import ESC06 from "./js/Balde de carnada.js"
+              import ESC07 from "./js/Casa Cangrejo.js"
+              import ESC08 from "./js/bob esponja.js"
+              import ESC09 from "./js/patricio per.js"
+               import ESC10 from "./js/crustaceo.js"
+                import ESC11 from "./js/casa arenita.js"
+              import ESC12 from "./js/Medusas.js"
+               import ESC13 from "./js/edificios.js"
+
+               import ESC14 from "./js/sombrilla.js"
+              
+
+    //👉🏽 Renderer - Realiza una conexión entre el código y el canvas
+    var renderer = new THREE.WebGLRenderer({canvas: document.getElementById('myCanvas'),antialias: true});
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(95, 158, 160);
+
+    //🎬 Creando nueva escena 
+    var scene = new THREE.Scene();
+  
+    //👉🏽Settings de la cámara
+var camera = new THREE.PerspectiveCamera(50, window.innerWidth /
+window.innerHeight, .1, 500);
+camera.position.set(0, 0.5, 15);
+
+ var loader= new THREE.TextureLoader();
+    var bgTextute= loader.load('assets/bobfon.jpeg');
+    scene.background=bgTextute;
+
+// Agregar el pointlock //
+var controls = new PointerLockControls( camera, renderer.domElement );
+document.getElementById('activ').onclick=()=>{
+controls.lock()
+}
+controls.addEventListener( 'lock', function () {
+boton.style.display = 'none';
+
+} );
+    
+controls.addEventListener( 'unlock', function () {
+boton.style.display = '';
+} );
+
+////////////// Añadir interactionManager
+
+var interactionManager = new InteractionManager(renderer,camera,renderer.domElement);
+
+// Luz ambiental
+var light1 = new THREE.AmbientLight(0xffffff, 2);
+light1.position.set(0, 50, 3);
+//scene.add(light1);
+
+
+var luz1 = new THREE.HemisphereLight(0xffffff,1);
+luz1.position.set(0, 50, 13);
+scene.add(luz1);
+
+  
+
+    // 🪄🪄 SECCIÓN DE CÓDIGO 🪄🪄
+//sombrillas
+ var escenario14 = ESC14({x:0, y:-4, z:-302});
+    //scene.add(escenario14);
+    escenario14.scale.set(0.1,0.1,0.1);
+        escenario14.rotation.set(-50,-2,50);
+
+        var s1= new THREE.Group();
+    s1.add(escenario14);
+    scene.add(s1);
+    s1.position.set(50,3,-80);
+
+     var s2= s1.clone();
+    scene.add(s2);
+    s2.position.set(-10,-2,0);
+
+  //edificios
+ var escenario13 = ESC13({x:0, y:-4, z:-302});
+    //scene.add(escenario13);
+    escenario13.scale.set(0.1,0.1,0.1);
+        escenario13.rotation.set(0,-2,0);
+
+        var e1= new THREE.Group();
+    e1.add(escenario13);
+    scene.add(e1);
+    e1.position.set(0,0,-15);
+
+     var e2= e1.clone();
+    scene.add(e2);
+    e2.position.set(-10,-2,0);
+    
+     var e3= e1.clone();
+    scene.add(e3);
+    e3.position.set(10,-2,10);
+    
+     var e4= e1.clone();
+    scene.add(e4);
+    e4.position.set(20,-2,30);
+    
+     var e5= e1.clone();
+    scene.add(e5);
+    e5.position.set(40,-2,-30);
+    
+     var e6= e1.clone();
+    scene.add(e6);
+    e6.position.set(5,-8,20);
+    
+     var e7= e1.clone();
+    scene.add(e7);
+    e7.position.set(-20,-2,15);
+    
+     var e8= e1.clone();
+    scene.add(e8);
+    e8.position.set(-10,-5,-60);
+    
+     var e9= e1.clone();
+    scene.add(e9);
+    e9.position.set(-30,-2,-40);
+    
+     var e10= e1.clone();
+    scene.add(e10);
+    e10.position.set(40,-2,10);
+    
+     var e11= e1.clone();
+    scene.add(e11);
+    e11.position.set(-45,-2,-20);
+    
+
+    //medusas
+ var escenario12 = ESC12({x:-150, y:0, z:-152});
+    //scene.add(escenario12);
+    escenario12.scale.set(0.1,0.1,0.1);
+
+    var m1= new THREE.Group();
+    m1.add(escenario12);
+    scene.add(m1);
+    m1.position.set(0,0,-15);
+
+     var m2= m1.clone();
+    scene.add(m2);
+    m2.position.set(-10,0,0);
+
+      var m2= m1.clone();
+    scene.add(m2);
+    m2.position.set(-10,4,0);
+
+      var m3= m1.clone();
+    scene.add(m3);
+    m3.position.set(-15,0,5);
+
+      var m4= m1.clone();
+    scene.add(m4);
+    m4.position.set(10,7,0);
+
+      var m5= m1.clone();
+    scene.add(m5);
+    m5.position.set(10,3,10);
+
+      var m6= m1.clone();
+    scene.add(m6);
+    m6.position.set(0,3,7);
+
+      var m7= m1.clone();
+    scene.add(m7);
+    m7.position.set(0,8,0);
+
+      var m8= m1.clone();
+    scene.add(m8);
+    m8.position.set(-10,8,5);
+
+
+      var m9= m1.clone();
+    scene.add(m9);
+    m9.position.set(-8,5,9);
+
+      var m10= m1.clone();
+    scene.add(m10);
+    m10.position.set(10,10,10);
+
+      var m11= m1.clone();
+    scene.add(m11);
+    m11.position.set(-15,3,12);
+
+      var m12= m1.clone();
+    scene.add(m12);
+    m12.position.set(15,3,8);
+
+      var m13= m1.clone();
+    scene.add(m13);
+    m13.position.set(10,5,10);
+
+      var m14= m1.clone();
+    scene.add(m14);
+    m14.position.set(3,2,0);
+
+      var m15= m1.clone();
+    scene.add(m15);
+    m15.position.set(-10,0,0);
+   
+
+ 
+    //escenarios eve
+
+    //entrada
+
+    var escenario04 = ESC04({x:-3, y:0, z:2});
+    scene.add(escenario04);
+    escenario04.scale.set(0.1,0.1,0.1); 
+
+    var loader=new FontLoader();
+    var font=loader.parse(fontJSON);
+    var geometry1= new TextGeometry('WELCOME TO',{
+        font: font,
+        size:0.5,
+        height:0,
+        depth:3,
+        curveSegments: 54,
+		bevelEnabled: false,
+		bevelThickness: 3,
+		bevelSize: 0.03,
+		bevelOffset: 3,
+		bevelSegments: 3,
+ });
+
+ geometry1.center();
+ var material10=new THREE.MeshLambertMaterial({color:0x000000,emissive:0x000000, shading:THREE.FlatShading});
+ var mesh1= new THREE.Mesh(geometry1,material10);
+ scene.add(mesh1);
+ mesh1.position.set(-3,1.5,3);
+ mesh1.rotation.set(0,0,-0.05);
+
+  var loader=new FontLoader();
+    var font=loader.parse(fontJSON);
+    var geometry2= new TextGeometry('FONDO DE BIKINI',{
+        font: font,
+        size:0.4,
+        height:0,
+        depth:3,
+        curveSegments: 4,
+		bevelEnabled: false,
+		bevelThickness: 3,
+		bevelSize: 0.03,
+		bevelOffset: 0,
+		bevelSegments: 3,
+ });
+
+ geometry2.center();
+ var mesh2= new THREE.Mesh(geometry2,material10);
+ scene.add(mesh2);
+ mesh2.position.set(-3,0.4,3);
+ mesh2.rotation.set(0,0,0.05);
+
+ //bob
+
+ var escenario08 = ESC08({x:15, y:-2, z:-30});
+    scene.add(escenario08);
+escenario08.scale.set(0.1,0.1,0.1);
+escenario08.rotation.set(0,-0.3,0);
+
+var escenario1 = ESC05({x:9.4, y:-2, z:-30.2});
+    scene.add(escenario1);
+escenario1.scale.set(0.1,0.1,0.1);
+
+ //kagre
+
+ var escenario05 = ESC05({x:0, y:1, z:-120});
+    scene.add(escenario05);
+escenario05.scale.set(1,1,1);
+
+
+var basekan = new THREE.CylinderGeometry(10,10,1, 30);
+var material01 = new THREE.MeshLambertMaterial({color: 0xce1a1a});
+var mesh3 = new THREE.Mesh(basekan, material01);
+scene.add(mesh3);
+mesh3.position.set(0, -5, -120);
+
+//casa arenita
+var escenario11 = ESC11({x:180, y:-6, z:-310});
+scene.add(escenario11);
+escenario11.scale.set(0.3,0.3,0.3);
+escenario11.rotation.set(0,-9.3,0);
+
+//casa patricio
+var escenario01 = ESC01({x:200, y:-9, z:-190});
+scene.add(escenario01);
+escenario01.scale.set(0.3,0.3,0.3);
+
+var escenario09 = ESC09({x:180, y:-5, z:-200});
+scene.add(escenario09);
+escenario09.scale.set(1.3,1.3,1.3);
+escenario09.rotation.set(0,-1.5,0);
+
+//casa calamardo
+var escenario02 = ESC02({x:150, y:0, z:-108});
+scene.add(escenario02);
+escenario02.rotation.set(0,-190,0);  
+escenario02.scale.set(0.2,0.2,0.2);  
+
+//casa bob
+var escenario03 = ESC03({x:150, y:-6, z:-90});
+scene.add(escenario03);
+escenario03.rotation.set(0,-190,0); 
+escenario03.scale.set(0.2,0.2,0.2);  
+
+
+//balde de carnada
+
+var escenario06 = ESC06({x:-100, y:8, z:-5});
+scene.add(escenario06);
+escenario06.rotation.set(0,160,0); 
+escenario06.scale.set(0.2,0.2,0.2); 
+
+
+    
+
+//escenarios
+
+var escenario07 = ESC07({x:170, y:0, z:-390});
+scene.add(escenario07);
+escenario07.rotation.set(0,-190,0); 
+escenario07.scale.set(3.7,3.7,3.7); 
+
+ var escenario10 = ESC10({x:-100, y:0, z:-90});
+scene.add(escenario10);
+escenario10.rotation.set(0,-270.3,0); 
+escenario10.scale.set(0.4,0.4,0.4); 
+
+
+
+
+
+ //base(suelo)
+var cuadro = new THREE.BoxGeometry(500, 0.1, 500);
+var materialSuelo = new THREE.MeshLambertMaterial({color: 0xffeac5});
+var suelo = new THREE.Mesh(cuadro, materialSuelo);
+scene.add(suelo);
+suelo.position.set(0, -10, -200);
+
+//piso calle
+
+var cuadro = new THREE.BoxGeometry(20, 0.1, 500);
+var materialSuelo = new THREE.MeshLambertMaterial({color: 0x4a5252});
+var suelo = new THREE.Mesh(cuadro, materialSuelo);
+scene.add(suelo);
+suelo.position.set(100, -9.8, -200);
+
+var cuadro = new THREE.BoxGeometry(55, 0.1, 20);
+var materialSuelo = new THREE.MeshLambertMaterial({color: 0x4a5252});
+var suelo = new THREE.Mesh(cuadro, materialSuelo);
+scene.add(suelo);
+suelo.position.set(130, -9.8, -60);
+
+var cuadro = new THREE.BoxGeometry(6, 0.1, 20);
+var materialSuelo = new THREE.MeshLambertMaterial({color: 0x4a5252});
+var suelo = new THREE.Mesh(cuadro, materialSuelo);
+scene.add(suelo);
+suelo.position.set(115, -9.8, -120);
+
+var cuadro = new THREE.BoxGeometry(6, 0.1, 20);
+var materialSuelo = new THREE.MeshLambertMaterial({color: 0x4a5252});
+var suelo = new THREE.Mesh(cuadro, materialSuelo);
+scene.add(suelo);
+suelo.position.set(125, -9.8, -120);
+
+var cuadro = new THREE.BoxGeometry(6, 0.1, 20);
+var materialSuelo = new THREE.MeshLambertMaterial({color: 0x4a5252});
+var suelo = new THREE.Mesh(cuadro, materialSuelo);
+scene.add(suelo);
+suelo.position.set(135, -9.8, -120);
+
+var cuadro = new THREE.BoxGeometry(6, 0.1, 20);
+var materialSuelo = new THREE.MeshLambertMaterial({color: 0x4a5252});
+var suelo = new THREE.Mesh(cuadro, materialSuelo);
+scene.add(suelo);
+suelo.position.set(145, -9.8, -120);
+
+var cuadro = new THREE.BoxGeometry(6, 0.1, 20);
+var materialSuelo = new THREE.MeshLambertMaterial({color: 0x4a5252});
+var suelo = new THREE.Mesh(cuadro, materialSuelo);
+scene.add(suelo);
+suelo.position.set(155, -9.8, -120);
+
+var cuadro = new THREE.BoxGeometry(60, 0.1, 20);
+var materialSuelo = new THREE.MeshLambertMaterial({color: 0x4a5252});
+var suelo = new THREE.Mesh(cuadro, materialSuelo);
+scene.add(suelo);
+suelo.position.set(135, -9.8, -190);
+
+var mar= new THREE.BoxGeometry(150, 1, 150);
+var materialmar = new THREE.MeshLambertMaterial({color: 0x60fdfe});
+var mar1 = new THREE.Mesh(mar, materialmar);
+scene.add(mar1);
+mar1.position.set(-160, -9.8, -370);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+//interacciones
+
+          //CUBO bob//
+var cuadro1 = new THREE.BoxGeometry(7, 4, 1);
+var texture01 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material1 = new THREE.MeshLambertMaterial({map:texture01});
+var mesh08 = new THREE.Mesh(cuadro1, material1);
+scene.add(mesh08);
+mesh08.position.set(15, 8, -30);
+mesh08.rotation.set(0, 9.3, 0);
+
+//evento1
+
+escenario01.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000);
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh08.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords) 
+.to({x:10, y: 10, z: 5}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//evento3
+
+mesh08.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//////// FIN INTERACCION
+
+var geometryx = new THREE.BoxGeometry(.0075, .05, .075);
+var materialx = new THREE.MeshNormalMaterial({side:THREE.DoubleSide});
+var meshx = new THREE.Mesh(geometryx, materialx);
+meshx.position.set(0,0,-1);
+var geometryx2 = new THREE.BoxGeometry(.05, .0075, .075);
+var meshx2 = new THREE.Mesh(geometryx2, materialx);
+meshx2.position.set(0,0,-1);
+scene.add( camera );
+camera.add( meshx, meshx2 );
+
+//kangre//
+  
+ var cuadrado2 = new THREE.BoxGeometry(7, 4, 1);
+ var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material07=new THREE.MeshLambertMaterial({map:texture01});
+var mesh07=new THREE.Mesh(cuadrado2,material07);
+scene.add(mesh07);
+mesh07.position.set(0,20,-120);
+
+//evento1
+
+mesh07.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh07.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords) 
+.to({x:0, y: 15, z: -70}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//evento3
+
+mesh07.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//////// FIN INTERACCION
+
+          //CASAS 1//
+
+          
+var cuadrado3=new THREE.BoxGeometry(7, 4, 1);
+var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material05=new THREE.MeshLambertMaterial({map:texture01});
+var mesh09=new THREE.Mesh(cuadrado3,material05);
+scene.add(mesh09);
+mesh09.position.set(100,25,-95);
+mesh09.rotation.set(0,-4.6,0);
+
+//evento1
+mesh09.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh09.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//evento3
+
+mesh09.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.2, 1.2, 1.2);
+new TWEEN.Tween(coords)
+.to({x:5, y: 35, z: -120}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//////// FIN INTERACCION
+
+ //CASAS patricio//
+
+          
+var cuadrado4=new THREE.BoxGeometry(9, 6, 1);
+var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material06=new THREE.MeshLambertMaterial({map:texture01});
+var mesh10=new THREE.Mesh(cuadrado4,material06);
+scene.add(mesh10);
+mesh10.position.set(150,25,-190);
+mesh10.rotation.set(0,-4.6,0);
+
+//evento1
+mesh10.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh10.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//evento3
+
+mesh10.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords)
+.to({x:70, y: 35, z: -190}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//////// FIN INTERACCION
+
+
+ //CASAS calamardo//
+
+          
+var cuadrado5=new THREE.BoxGeometry(7, 4, 1);
+var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material07=new THREE.MeshLambertMaterial({map:texture01});
+var mesh05=new THREE.Mesh(cuadrado5,material07);
+scene.add(mesh05);
+mesh05.position.set(150,35,-117);
+mesh05.rotation.set(0,-4.6,0);
+
+//evento1
+mesh05.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh05.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//evento3
+
+mesh05.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords)
+.to({x:90, y: 20, z: -115}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//////// FIN INTERACCION
+
+
+ //CASAS bob//
+
+          
+var cuadrado6=new THREE.BoxGeometry(7, 4, 1);
+var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material07=new THREE.MeshLambertMaterial({map:texture01});
+var mesh11=new THREE.Mesh(cuadrado6,material07);
+scene.add(mesh11);
+mesh11.position.set(150,35,-60);
+mesh11.rotation.set(0,-4.6,0);
+
+//evento1
+mesh11.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh11.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//evento3
+
+mesh11.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords)
+.to({x:90, y: 20, z: -60}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//////// FIN INTERACCION
+
+ //CASAS carenita//
+
+          
+var cuadrado7=new THREE.BoxGeometry(13, 9, 1);
+var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material07=new THREE.MeshLambertMaterial({map:texture01});
+var mesh12=new THREE.Mesh(cuadrado7,material07);
+scene.add(mesh12);
+mesh12.position.set(150,35,-265);
+mesh12.rotation.set(0,-4.6,0);
+
+//evento1
+mesh12.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh12.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//evento3
+
+mesh12.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords)
+.to({x:150, y: 20, z: -300}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//////// FIN INTERACCION
+
+ //CASAS cangrejo//
+
+          
+var cuadrado12=new THREE.BoxGeometry(7, 4, 1);
+var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material07=new THREE.MeshLambertMaterial({map:texture01});
+var mesh15=new THREE.Mesh(cuadrado12,material07);
+scene.add(mesh15);
+mesh15.position.set(150,35,-350);
+mesh15.rotation.set(0,-4.6,0);
+
+//evento1
+mesh15.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh15.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//evento3
+
+mesh15.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords)
+.to({x:110, y: 20, z: -390}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//////// FIN INTERACCION
+
+//restaurantes
+
+          
+var cuadrado11=new THREE.BoxGeometry(7, 4, 1);
+var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material08=new THREE.MeshLambertMaterial({map:texture01});
+var mesh13=new THREE.Mesh(cuadrado11,material08);
+scene.add(mesh13);
+mesh13.position.set(-70,25,-60);
+mesh13.rotation.set(0,-4.6,0);
+
+//evento1
+mesh13.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh13.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//evento3
+
+mesh13.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords)
+.to({x:10, y: 20, z: -50}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//////// FIN INTERACCION
+
+//balde de carnada
+var cuadrado8=new THREE.BoxGeometry(7, 4, 1);
+var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material08=new THREE.MeshLambertMaterial({map:texture01});
+var mesh06=new THREE.Mesh(cuadrado8,material08);
+scene.add(mesh06);
+mesh06.position.set(-110,25,-20);
+mesh06.rotation.set(0,-10.5,0);
+
+//eveto1
+mesh06.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh06.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//evento3
+
+mesh06.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords)
+.to({x:-90, y: 10, z: -50}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//////// FIN INTERACCION
+
+//balde de carnada
+var cuadrado9=new THREE.BoxGeometry(7, 4, 1);
+var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material08=new THREE.MeshLambertMaterial({map:texture01});
+var mesh14=new THREE.Mesh(cuadrado9,material08);
+scene.add(mesh14);
+mesh14.position.set(-110,25,-80);
+mesh14.rotation.set(0,10.5,0);
+
+//eveto1
+mesh14.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh14.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//evento3
+
+mesh14.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords)
+.to({x:-90, y: 10, z: -10}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//////// FIN INTERACCION
+
+//ciudad
+var cuadrado9=new THREE.BoxGeometry(7, 4, 1);
+var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material08=new THREE.MeshLambertMaterial({map:texture01});
+var mesh16=new THREE.Mesh(cuadrado9,material08);
+scene.add(mesh16);
+mesh16.position.set(0,15,-250);
+mesh16.rotation.set(0,0,0);
+
+//eveto1
+mesh16.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh16.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//evento3
+
+mesh16.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords)
+.to({x:0, y: 5, z: -200}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//////// FIN INTERACCION
+
+//playa
+var cuadrado9=new THREE.BoxGeometry(7, 4, 1);
+var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material08=new THREE.MeshLambertMaterial({map:texture01});
+var mesh17=new THREE.Mesh(cuadrado9,material08);
+scene.add(mesh17);
+mesh17.position.set(-90,15,-250);
+mesh17.rotation.set(0,10,0);
+
+//eveto1
+mesh17.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh17.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//evento3
+
+mesh17.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords)
+.to({x:-50, y: 5, z: -250}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//////// FIN INTERACCION
+
+
+//medusas
+var cuadrado9=new THREE.BoxGeometry(7, 4, 1);
+var texture1 = new THREE.TextureLoader().load("assets/cacahuadolar.jpg");
+var material08=new THREE.MeshLambertMaterial({map:texture01});
+var mesh18=new THREE.Mesh(cuadrado9,material08);
+scene.add(mesh18);
+mesh18.position.set(-90,15,-130);
+mesh18.rotation.set(0,10.5,0);
+
+//eveto1
+mesh18.addEventListener('mouseover', (event) => { 
+event.target.material.color.set(0xff0000); 
+document.body.style.cursor = 'pointer';});
+
+//evento2
+
+mesh18.addEventListener('mouseout', (event) => { 
+event.target.material.color.set(0x00ff00);
+document.body.style.cursor = 'default';});
+
+//evento3
+
+mesh18.addEventListener('click', (event) => { 
+var coords = { x: camera.position.x, y: camera.position.y, z:
+camera.position.z };
+event.target.scale.set(1.0, 1.0, 1.0);
+new TWEEN.Tween(coords)
+.to({x:-90, y: 15, z: -120}) 
+.onUpdate(() => camera.position.set(coords.x,coords.y,coords.z ))
+.start();});
+
+//////// FIN INTERACCION
+
+interactionManager.add(mesh08);
+   interactionManager.add(mesh07);
+      interactionManager.add(mesh05);
+          interactionManager.add(mesh06);
+           interactionManager.add(mesh09);
+           interactionManager.add(mesh10);
+           interactionManager.add(mesh11);
+             interactionManager.add(mesh12);
+             interactionManager.add(mesh13);
+             interactionManager.add(mesh14);
+              interactionManager.add(mesh15);
+              interactionManager.add(mesh16);
+                interactionManager.add(mesh17);
+                    interactionManager.add(mesh18);
+
+//🎰🎰Rendering y animación
+  
+
+requestAnimationFrame(render);
+function render() {
+TWEEN.update() 
+interactionManager.update()
+ escenario05.rotation.y -=-0.02;
+//🪄🪄 Animación
+
+renderer.render(scene, camera);
+requestAnimationFrame(render);}
+
+//🪄🪄 Animación
+
+controls.update();
+</script>
+</body>
+</html>
